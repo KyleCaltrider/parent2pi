@@ -90,5 +90,4 @@ class PaypalSmartButton extends React.Component {
 }
 
 let script = `https://www.paypal.com/sdk/js?client-id=${process.env.REACT_APP_PAYPAL_CLIENT_ID}`
-console.log("Lazy Loading:", script);
 export default scriptLoader(script)(PaypalSmartButton);
