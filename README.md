@@ -25,6 +25,9 @@ The backend is built on Node/Express. The server manages all Etsy API calls and 
 
 ### Needed Environmental Variables
 MONGO_DB - URI for mongo database
+
 EMAIL_USER - gmail email to send confirmation email from
+
 EMAIL_PASSWORD - Password for the above email (2-step verification needs to have an app password made)
+
 REACT_APP_PAYPAL_CLIENT_ID - Paypal client ID
