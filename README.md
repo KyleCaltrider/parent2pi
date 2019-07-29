@@ -1,4 +1,4 @@
-## [Try It Live](https://react-etsy.herokuapp.com "React-Etsy Demo")
+## [Try It Live](https://parent2pi.herokuapp.com/ "Parent2PI Beta Demo")
 
 # Parent2PI
 ## Main App
