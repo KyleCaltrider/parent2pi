@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import HomeImage from '../images/pick_one.jpg';
 
 function Home(props) {
     let page = props.pages.find(p => p.name === "Home");
@@ -8,7 +9,7 @@ function Home(props) {
         <div id="Home">
         <div id="home-image-container">
             <h1>Love and Logic<sup>&reg;</sup> Parenting Classes</h1>
-            <img id="home-image" src={props.renderElement("Home", "img_url", "https://via.placeholder.com/1080x500")} alt="Homepage Background" />
+            <img id="home-image" src={HomeImage} alt="Homepage Background" />
         </div>
         <div id="home-text">
             <ReactMarkdown source={props.renderElement("Home", "banner", " Loading Banner Text...")} className="home-banner"/>
@@ -21,7 +22,7 @@ function Home(props) {
                 page["contents"]["members"].map( (member, i) => {
                     return(
                         <div id={"member-"+i} className="home-staff">
-                            <img src={member.img_url} alt="A Staff Member" />
+                            <img src={`data:image/jpeg;base64,${member.img_url.toString('base64')}`} alt="A Staff Member" />
                             <p className="home-name">{member.name.toUpperCase()}</p>
                             <ReactMarkdown source={member.bio} />
                         </div>

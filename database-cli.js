@@ -1,5 +1,6 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
+const fs = require('fs');
 const { cmsAdmin, cmsPage } = require('./models');
 const bcrypt = require('bcrypt');
 
@@ -18,9 +19,11 @@ Arguments:
 let args = process.argv.reduce((acc, arg, i, args) => {
     const val = args[i+1];
     if (arg.search(/^-?-u/i) !== -1) acc['user'] = val;
-    else if (arg.search(/^-?-p/i) !== -1) acc['password'] = val;
+    else if (arg.search(/^-?-pas/i) !== -1) acc['password'] = val;
     else if (arg.search(/create.+user|new.+user/i) !== -1) acc['newUser'] = val;
-    else if (arg.search(/init\w?/i) !== -1)acc['init'] = val;
+    else if (arg.search(/init\w?/i) !== -1) acc['init'] = val;
+    else if (arg.search(/photo/i) !== -1) acc['photo'] = val;
+    else if (arg.search(/member/i) !== -1) acc['photoMember'] = val;
 	return acc;
 }, {});
 args['init'] = args['init'] == 'true' ? true : false;
@@ -127,4 +130,20 @@ if (args.init == true) {
             bookingPage.save("Added Book Page");
         }
     });
+}
+
+
+if (args.photo && args.photoMember) {
+    const photo = fs.readFileSync(args.photo);
+    cmsPage.findOne({name: "Home"}, (err, doc) => {
+        if (err) return console.error(err);
+        for (let i=0; i < doc.contents.members.length; i++) {
+            if (doc.contents.members[i]['name'].toLowerCase().includes(args.photoMember)) {
+                console.log("Updating Photo...");
+                doc.contents.members[i]['img_url'] = photo;
+                doc.markModified(`contents.members`);
+            }
+        }
+        doc.save()
+    })
 }
