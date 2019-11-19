@@ -18,7 +18,9 @@ function Navigation(props) {
           <div id="navigation">
             <p className="nav-text" onClick={() => {props.changeDisplay('Home'); props.toggleNav();}}>Home</p>
             <p className="nav-text" onClick={() => {props.changeDisplay('Tips'); props.toggleNav();}}>Tips</p>
-            <p className="nav-text" onClick={() => {props.changeDisplay('Book'); props.toggleNav();}}>Book</p>
+            <p className="nav-text" onClick={() => {props.changeDisplay('Book'); props.toggleNav();}}>Classes</p>
+            <p className="nav-text" onClick={() => {props.changeDisplay('Consult'); props.toggleNav();}}>Private Consult</p>
+            <p className="nav-text" onClick={() => {props.changeDisplay('Group'); props.toggleNav();}}>Group Presentations</p>
             <a id="email" className="nav-text" href={"mailto:"+props.renderElement("Home", "email", "")}>Email</a>
           </div>
         </div>

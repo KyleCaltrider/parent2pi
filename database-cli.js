@@ -130,7 +130,30 @@ if (args.init == true) {
             bookingPage.save("Added Book Page");
         }
     });
-}
+    cmsPage.findOne({name: "Consult"}, function (err, page) {
+        if (err) return console.error(err);
+        if (page) return console.log("Consult Page already created");
+        else {
+            const consultPage = new cmsPage({name: "Consult", contents: {
+                description: "",
+                included: ""
+            }});
+            consultPage.save("Added Private Consultation Page");
+        }
+    });
+    cmsPage.findOne({name: "Group"}, function (err, page) {
+        if (err) return console.error(err);
+        if (page) return console.log("Group Presentation Page already created");
+        else {
+            const groupPage = new cmsPage({name: "Group", contents: {
+                description: ""
+            }});
+            groupPage.save("Added Group Presentation Page");
+        }
+    });
+};
+
+
 
 
 if (args.photo && args.photoMember) {

@@ -7,7 +7,7 @@ body, html, p, a, h1, h2, h3, h4, h5, h6, ul, li, div, nav, i, img, form, input,
   font-size: 100%;
   font-weight: normal;
 }
-ul, li {
+li {
   list-style: none;
 }
 a {
@@ -135,7 +135,7 @@ body {
   margin: 10px 37vw;
   display: block;
   cursor: pointer;
-  font-size: 7vw;
+  font-size: 3vw;
   position: relative;
 }
 .nav-text::before {
@@ -149,7 +149,7 @@ body {
   transform: scaleX(0);
   transition: all 0.3s ease-in-out;
 }
-.nav-text:hover:before {
+.nav-text:hover::before {
   transform: scaleX(1);
 }
 #social {
@@ -190,12 +190,14 @@ body {
   font-size: 4vw;
   font-family: "Open Sans Condensed", sans-serif;
 }
+/*
 @media screen and (min-width: 800px) {
   #home-image-container h1 {
     text-align: right;
     right: 40px;
   }
 }
+*/
 #home-image-container img {
   position: relative;
   width: 100%;
@@ -302,9 +304,6 @@ body {
 
 
 
-
-
-
 /* Booking */
 #Book {
 
@@ -355,6 +354,70 @@ body {
 }
 
 
+
+/* Private Consult */
+#Consult {
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 2em;
+}
+#Consult-title {
+  font-size: 3em;
+  text-align: center;
+}
+#Consult-container {
+  display: flex;
+  flex-direction: column;
+  /*max-width: 1000px;*/
+  margin: auto 5vw;
+  margin-top: 20px;
+  /*border: solid 2px #95a74b;
+  border-radius: 5px;*/
+  padding: 0px 10px 10px 10px;
+}
+#Consult-included-start {
+  margin-top: 10px;
+}
+.consult-included li {
+  list-style: disc;
+}
+.consult-included ul {
+  padding: 10px 30px 20px 30px;
+}
+#Consult-contact {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: -30px;
+}
+
+
+
+/* Group Presentation */
+#Group {
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 2em;
+}
+#Group-title {
+  font-size: 3em;
+  text-align: center;
+}
+#Group-container {
+  display: flex;
+  flex-direction: column;
+  /*max-width: 1000px;*/
+  margin: auto 5vw;
+  margin-top: 20px;
+  /*border: solid 2px #95a74b;
+  border-radius: 5px;*/
+  padding: 0px 10px 10px 10px;
+}
+#Group-contact {
+  text-align: center;
+  font-size: 1.5em;
+  margin-top: 20px;
+  margin-bottom: -30px;
+}
+
+
 /*  Footer  */
 #footer-email {
   margin: 30px 0px 30px 0px;
@@ -388,5 +451,5 @@ body {
 footer {
   text-align: center;
   opacity: 0.4;
-  margin: 10px 2px 10px 2px;
+  margin: 20px 2px 10px 2px;
 }

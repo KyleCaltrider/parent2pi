@@ -7,6 +7,8 @@ import Navigation from './components/Navigation';
 import Home from './components/Home';
 import Tips from './components/Tips';
 import Book from './components/Book';
+import Consult from './components/Consult';
+import Group from './components/Group';
 
 
 import parent2pi_logo from './images/parent2pi_logo.png';
@@ -44,14 +46,17 @@ class App extends React.Component {
   }
 
   toggleNav() {
+    // Toggle a nav option on or off
     this.setState({nav: this.state.nav === "active" ? "" : "active"});
   }
 
   changeDisplay(view) {
+    // Set the display to argument: view
     this.setState({display: view});
   }
 
   updatePages() {
+    // Requests page data from the server and stores it in the 'pages' state value.
     const xhr = new XMLHttpRequest();
     xhr.onload = async() => {
       if (xhr.response) {
@@ -76,7 +81,9 @@ class App extends React.Component {
     for (let key in book) {
       if (!key.includes("book")) delete book[key];
     }
-    const bookPage = this.state.pages.find(p => p.name === "Book");
+    const bookPage = this.state.pages.find(p => p.name === "Book"),
+          consultPage = this.state.pages.find(p => p.name === "Consult"),
+          groupPage = this.state.pages.find(p => p.name === "Group");
 
     const views = { 
       'Home': <Home pages={this.state.pages} renderElement={this.renderPageElement} />,
@@ -86,7 +93,10 @@ class App extends React.Component {
                     bookingChange={this.bookingChange}
                     bookingTypeChange={this.bookingTypeChange}
                     bookingDateChange={this.bookingDateChange}
-                    bookingParticipantsChange={this.bookingParticipantsChange} />
+                    bookingParticipantsChange={this.bookingParticipantsChange} />,
+      'Consult': <Consult renderElement={this.renderPageElement}
+                          page={consultPage} />,
+      'Group': <Group renderElement={this.renderPageElement} page={groupPage} />
     };
     return views[this.state.display];
   };
