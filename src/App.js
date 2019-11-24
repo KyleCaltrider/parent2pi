@@ -26,7 +26,9 @@ class App extends React.Component {
       bookingEmail: "",
       bookingDate: "",
       bookingType: "",
-      bookingComments: ""
+      bookingComments: "",
+      bookingDiscount: "",
+      bookingDiscountPercent: 1
     }
     this.toggleNav = this.toggleNav.bind(this);
     this.changeDisplay = this.changeDisplay.bind(this);
@@ -37,6 +39,7 @@ class App extends React.Component {
     this.bookingTypeChange = this.bookingTypeChange.bind(this);
     this.bookingParticipantsChange = this.bookingParticipantsChange.bind(this);
     this.bookingDateChange = this.bookingDateChange.bind(this);
+    this.bookingCheckDiscount = this.bookingCheckDiscount.bind(this);
 
   }
 
@@ -93,7 +96,8 @@ class App extends React.Component {
                     bookingChange={this.bookingChange}
                     bookingTypeChange={this.bookingTypeChange}
                     bookingDateChange={this.bookingDateChange}
-                    bookingParticipantsChange={this.bookingParticipantsChange} />,
+                    bookingParticipantsChange={this.bookingParticipantsChange}
+                    bookingCheckDiscount={this.bookingCheckDiscount} />,
       'Consult': <Consult renderElement={this.renderPageElement}
                           page={consultPage} />,
       'Group': <Group renderElement={this.renderPageElement} page={groupPage} />
@@ -114,7 +118,7 @@ class App extends React.Component {
       else return alt;
     }
     else {
-      console.log("Page Not Found");
+      console.log("Page Not Found:" + page + " , " + el);
       return alt;
     }
   }
@@ -131,6 +135,7 @@ class App extends React.Component {
     bookingType = bookingType.value;
     this.setState({bookingType});
   }
+
   bookingParticipantsChange(bookingParticipants) {
     bookingParticipants = bookingParticipants.value;
     this.setState({bookingParticipants});
@@ -139,6 +144,24 @@ class App extends React.Component {
   bookingDateChange(bookingDate) {
     bookingDate = bookingDate.value;
     this.setState({bookingDate});
+  }
+
+  bookingCheckDiscount() {
+    let bookingPage = this.state.pages.filter(p => p.name == "Book");
+    bookingPage = bookingPage[0];
+    let discounts = bookingPage.contents.discounts.split('\n').map(d => d.split(' '));
+    console.log(`Discounts:`, discounts);
+    let discount = discounts.find(elm => elm[1] === this.state.bookingDiscount);
+    console.log(discount);
+    if (discount) {
+      let perc = parseInt(discount[0].slice(0, -1));
+      perc = 1 - perc/100.0;
+      console.log(perc);
+      this.setState({bookingDiscountPercent: perc});
+    } else {
+      this.setState({bookingDiscount: "Invalid Code", bookingDiscountPercent: 1});
+    }
+
   }
 
 

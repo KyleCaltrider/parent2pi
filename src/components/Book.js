@@ -8,10 +8,17 @@ function selectize(value) {
 }
 
 function Book(props) {
-    let {bookingDate, bookingEmail, bookingName, bookingParticipants, bookingType, BookingComments} = props.book;
+    let {bookingDate, bookingEmail, bookingName, bookingParticipants,
+        bookingType, bookingComments, bookingDiscount, bookingDiscountPercent} = props.book;
     let total = bookingParticipants.slice(0, 1).toLowerCase() === "i" ?
                     props.renderElement("Book", "individual_price", "") : bookingParticipants.slice(0, 1).toLowerCase() === "c" ?
                             props.renderElement("Book", "couples_price", "") : "";
+        if (bookingDiscount !== 1 && total) {
+            total = parseFloat(total) * bookingDiscountPercent;
+            total = total.toFixed(2);
+        }
+
+    console.log(`Total = ${total}`);
     let currency = props.renderElement("Book", "currency", "USD");
     if (bookingDate) bookingDate = selectize(bookingDate);
     if (bookingParticipants) bookingParticipants = selectize(bookingParticipants);
@@ -60,11 +67,17 @@ function Book(props) {
 
                     <textarea placeholder="Comments or Questions?" 
                             rows="5" className="bookingComments form-input"
-                            name="bookingComments" value={BookingComments}
+                            name="bookingComments" value={bookingComments}
                             onChange={props.bookingChange} />
                 </div>
                 <div className="bookingConfirm">
-                    <div>Total: {total.toString() + " " + props.renderElement("Book", "currency", "USD")}</div>
+                    <div>
+                        <div>Total: {total.toString() + " " + props.renderElement("Book", "currency", "USD")}</div>
+                        <input placeholder="Enter Discount Code" className="discountText"
+                                name="bookingDiscount" value={bookingDiscount} onChange={props.bookingChange} />
+                                <br />
+                        <button className="discountButton" onClick={props.bookingCheckDiscount}>Check Discount</button>
+                    </div>
                     <PaypalSmartButton value={total} currency={currency} description={bookingType} book={props.book} />
                 </div>
         </div>
