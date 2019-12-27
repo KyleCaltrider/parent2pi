@@ -71,6 +71,7 @@ body {
   height: auto;
   margin: 10px;
   margin-left: 20px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {
@@ -152,6 +153,7 @@ body {
 .nav-text:hover::before {
   transform: scaleX(1);
 }
+/*
 #social {
   margin-top: 5vh;
   display: flex;
@@ -164,7 +166,7 @@ body {
   height: auto;
   object-fit: fill;
 }
-
+*/
 
 
 
@@ -273,7 +275,19 @@ body {
   padding: 30px 0px 30px 0px;
 }
 
-
+#testimonials {
+  width: 90%;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 1.4em;
+}
+.home-testimonials {
+  margin-top: 10px;
+}
+#home-testimonials-heading {
+  font-size: 2.5em;
+  font-family: "Open Sans Condensed", sans-serif;
+  text-align: center;
+}
 
 
 
@@ -339,12 +353,11 @@ body {
   box-sizing: border-box;
 }
 #Book-form .form-input:focus {
-  border: solid 2px #2685ff;
+  border: solid 2px #95a74b;
 }
-
 .bookingConfirm {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   max-width: 650px;
   margin: auto;
@@ -352,9 +365,25 @@ body {
   font-size: 1.5em;
   font-family: "Open Sans Condensed", sans-serif;
 }
-
+@media screen and (min-width: 800px) {
+  .bookingConfirm {
+    flex-direction: row;
+  }
+}
 .discountButton {
-  
+  border-style: solid;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  padding: 0 5px 0 5px;
+  cursor: pointer;
+}
+.discountButton:hover {
+  background-color: #95a74b;
+  transition: background-color 0.3s ease-in-out;
+}
+.discountText {
+  border-style: solid;
+  border-radius: 4px;
 }
 
 

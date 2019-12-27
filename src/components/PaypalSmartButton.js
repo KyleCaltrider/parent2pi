@@ -45,7 +45,7 @@ class PaypalSmartButton extends React.Component {
                             }],
                             intent: 'CAPTURE',
                             application_context: {
-                                return_url: "http://localhost:5000"
+                                return_url: "https://parent2pi.com"
                             },
                             currency: this.props.currency,
                             description: this.props.description
@@ -61,7 +61,6 @@ class PaypalSmartButton extends React.Component {
                             data.append('paypalInfo', JSON.stringify(details));
                             data.append('bookingInfo', JSON.stringify(this.props.book));
                             data.append('total', this.props.value + " " + this.props.currency);
-                            xhr.onload = () => console.log(xhr.response);
                             xhr.open('POST', "/api/payment-confirmed");
                             xhr.send(data);
                         })

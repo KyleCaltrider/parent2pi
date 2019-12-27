@@ -11,10 +11,7 @@ function Navigation(props) {
           <div id="bar3" className={"bar "+props.nav} />
         </div>
         <div id="nav-overlay" className={props.nav} onClick={props.toggleNav}>
-          <div id="social">
-            <a id="instagram" href={props.renderElement("Home", "instagram", "https://www.instagram.com")}><img className="social-icon" src={EtsyLogo} alt="instagram link"></img></a>
-            <a id="facebook" href={props.renderElement("Home", "facebook", "https://www.facebook.com")}><img className="social-icon" src={FacebookLogo} alt="facebook link"></img></a>
-          </div>
+          
           <div id="navigation">
             <p className="nav-text" onClick={() => {props.changeDisplay('Home'); props.toggleNav();}}>Home</p>
             <p className="nav-text" onClick={() => {props.changeDisplay('Tips'); props.toggleNav();}}>Tips</p>
@@ -27,5 +24,12 @@ function Navigation(props) {
       </div>
     )
 }
+
+/* Social Media Icons
+          <div id="social">
+            <a id="instagram" href={props.renderElement("Home", "instagram", "https://www.instagram.com")}><img className="social-icon" src={EtsyLogo} alt="instagram link"></img></a>
+            <a id="facebook" href={props.renderElement("Home", "facebook", "https://www.facebook.com")}><img className="social-icon" src={FacebookLogo} alt="facebook link"></img></a>
+          </div>
+*/
 
 export default Navigation;

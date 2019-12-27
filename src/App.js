@@ -65,7 +65,7 @@ class App extends React.Component {
       if (xhr.response) {
         try {
           let pages = await JSON.parse(xhr.response);
-          console.log(pages);
+          //console.log(pages);
           this.setState({pages: pages});
         }
         catch(err) {
@@ -112,13 +112,13 @@ class App extends React.Component {
     // Falls back to the alt [String] argument
     
     const { pages } = this.state;
+    const pge = page;
     page = pages.find(p => p.name === page);
     if (page) {
       if (page.contents[el]) return page.contents[el]
       else return alt;
     }
     else {
-      console.log("Page Not Found:" + page + " , " + el);
       return alt;
     }
   }
@@ -150,13 +150,13 @@ class App extends React.Component {
     let bookingPage = this.state.pages.filter(p => p.name == "Book");
     bookingPage = bookingPage[0];
     let discounts = bookingPage.contents.discounts.split('\n').map(d => d.split(' '));
-    console.log(`Discounts:`, discounts);
+    //console.log(`Discounts:`, discounts);
     let discount = discounts.find(elm => elm[1] === this.state.bookingDiscount);
-    console.log(discount);
+    //console.log(discount);
     if (discount) {
       let perc = parseInt(discount[0].slice(0, -1));
       perc = 1 - perc/100.0;
-      console.log(perc);
+      //console.log(perc);
       this.setState({bookingDiscountPercent: perc});
     } else {
       this.setState({bookingDiscount: "Invalid Code", bookingDiscountPercent: 1});
@@ -171,7 +171,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <header id="header">
-          <img src={parent2pi_logo} alt="Company Logo" />
+          <img src={parent2pi_logo} alt="Company Logo" onClick={() =>   this.changeDisplay("Home")} />
           <p>{this.renderPageElement("Home", "company", "Loading Company...")}</p>
         </header>
         <Navigation toggleNav={this.toggleNav} nav={this.state.nav} changeDisplay={this.changeDisplay} renderElement={this.renderPageElement} />
